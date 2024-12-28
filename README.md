@@ -1,6 +1,28 @@
 # Projet 2021 Labo de chimie
 **Aly, développement du site Web avec Symfony 4.4**
-## Mission
+## Expression du besoin
+Les professeurs de Physique-Chimie du lycée utilisent la même salle de classe et le même labo de chimie. Dans ce labo, les produits chimiques qui servent aux expériences sont stockés dans une armoire.
+Il faut développer un système permettant de gérer les accès à l’armoire et de surveiller les paramètres physiques dans l’armoire, dans le labo et dans la salle de cours. Le projet consiste aussi à créer un site web permettant la gestion des produits et la visualisation graphique des données physiques.
+L’objectif est donc de mettre en place un système avec les caractéristiques suivantes :
+### Pour l’armoire de chimie :
+- On mesure la Température, l’Hygrométrie, le Taux de CO², le niveau d’éclairement
+- Il faut visualiser ces données en temps réel et par courbes historisées.historisées.historisées.
+- Export des données en fichier csv, pour une période donnée
+- Envoyer ces données à la base de données ainsi qu’au Raspberry Pi
+### Pour la salle de cours :
+- Il est intéressant de prendre aussi certaines mesures, peuvent influer sur les capacités d’apprentissage des élèves ainsi que sur la santé liée par exemple à la Covid 19
+- On mesure la Température, l’Hygrométrie, le taux de Co², le taux de COV
+- Il faut visualiser ces données sur un ordinateur à l’aide d’une interface homme-machine
+- Envoyer ces données à la base de données ainsi qu’au Raspberry Pi
+- L'enseignant présente sa carte sur un lecteur NFC, relié à l’armoire, et sécurisé par une gâche électrique :
+  - La saisie des identifiants des enseignants se fait dans la base de données.
+  - L’écriture des nouveaux enseignants autorisés
+  - Ouverture de la gâche quand l’enseignant est autorisé.
+### Gestion des produits
+- Saisie des produits avec caractéristiques et quantités
+- Mise à jour des quantités par import Excel
+- Listing et exportations des produits à commander par format Excel
+## Ma Mission
 Dans ce projet, je dois :
 - concevoir une base de données qui permettra d'héberger l’ensemble des données physiques (température, co2, cov) et des produits du laboratoire de chimie;
 - mettre en place un site web qui permettra de voir graphiquement les données physiques récupérées, de gérer les produits chimiques et qui permettra aussi de gérer le droit d'accès au labo et au site web.
