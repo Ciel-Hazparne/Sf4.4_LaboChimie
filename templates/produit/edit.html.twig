@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'un produit{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-5">Ajout d'un produit</h1>
+        {{ form_start(form) }}
+        <div class="row mb-3 mt-5">
+            <div class="col">
+                {{ form_row(form.name,{ 'label': 'Nom du produit' }) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.fournisseur) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.formule) }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                {{ form_row(form.duree_conservation,{ 'label': 'Durée de conservation(ans)' }) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.concentration_massique) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.masse) }}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                {{ form_row(form.quantite ) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.masse_molaire) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.concentration_molaire) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.volume) }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        <a href="{{ path('show_produits') }}">
+            <button type="button" class="btn btn-light ">Annuler</button>
+        </a>
+
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

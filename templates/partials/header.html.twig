@@ -1,0 +1,106 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('home') }}">Armoire chimique</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ path('home') }}"><i class="bi bi-house-fill"
+                                                                                              style="color: burlywood"></i>Accueil</a>
+                </li>
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true" aria-expanded="false"><i class="bi bi-funnel-fill"
+                                                                         style="color: burlywood"></i>Produits chimiques</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('show_produits') }}"><i class="bi bi-list">Liste des
+                                    produits</i></a>
+
+                            {# permet à l'admin de pouvoir ajouter un produit dans la liste #}
+
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ path('adminnew_produit') }}"><i class="bi bi-plus"></i>Ajout
+                                    d'un produit</a>
+
+                                <a class="dropdown-item" href="{{ path('adminimport') }}"><i class="bi bi-pencil-square"></i>MAJ BDD</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endif %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="bi bi-graph-up" style="color: burlywood"></i>Mesures</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('labo_mesure') }}">Laboratoire</a>
+                        <a class="dropdown-item" href="{{ path('classroom_mesure') }}">Salle de cours</a>
+                    </div>
+
+                </li>
+
+                {# permet à l'admin de pouvoir acceder au panier #}
+
+                {% if app.user and is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ path('user') }}"><i class="bi bi-person-lines-fill" style="color: burlywood"></i>Utilisateurs</a>
+
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ path('adminpanier') }}"><i class="bi bi-cart"
+                                                                           style="color: burlywood"></i>Panier</a>
+
+                    </li>
+                {% endif %}
+
+            </ul>
+        </div>
+        <ul class="navbar-nav ml-auto">
+
+            {# permet à l'utilisateur connecté de pouvoir se deconnecter et modofier son profil #}
+
+            {% if app.user %}
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">{{ app.user.prenom }} {{ app.user.nom }}</a>
+                    <div class="dropdown-menu">
+{#                        <a class="dropdown-item" href="{{ path('account_profile') }}">Modifier mon profil</a>#}
+                        <a class="dropdown-item" href="{{ path('account_logout') }}">Déconnexion</a>
+                    </div>
+                </li>
+{#                <form class="form-inline my-2 my-lg-0">#}
+{#                    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q"#}
+{#                           value="{{ app.request.query.get('q') }}" autocomplete="on">#}
+{#                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>#}
+{#                </form>#}
+                {# permet au visiteur de se connecter et 'il n'a pas de compte de se creer un compte #}
+
+            {% else %}
+                <li class="nav-item ">
+                    <a href="{{ path('account_login') }}" class="nav-link"><i class="bi bi-box-arrow-right"></i>Connexion</a>
+                </li>
+{#                <li class="nav-item ">#}
+{#                    <a href="{{ path('account_register') }}" class="nav-link"><i class="bi bi-pencil-square"></i>Inscription</a>#}
+{#                </li>#}
+            {% endif %}
+        </ul>
+        {# pour l'affichage de la barre de recherche #}
+
+
+
+    </div>
+</nav>
+
+{# pour l'affichage des messages #}
+
+{% for label, messages in app.flashes %}
+    <div class="container">
+        <div class="alert alert-{{ label }}">
+            {% for message in messages %}
+                <p>{{ message | raw }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}

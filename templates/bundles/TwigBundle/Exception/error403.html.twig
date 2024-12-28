@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée {% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="alert alert-danger">
+    <h1>Désolé vous n'avez pas les droits requis</h1>
+    <p>Vous pouvez retourner à la liste des produits</p>
+    </div>
+    <a href="{{ path('show_produits') }}" class="btn btn-primary">Retour à la liste des produits</a>
+</div>
+{% endblock %}

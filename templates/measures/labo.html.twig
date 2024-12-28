@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <style>
+        .graph_armoire {
+            max-width: 600px;
+            width: 100%;
+            font: 18px/1.5 sans-serif;
+        }
+    </style>
+    <div class="container">
+        <div class="row mb-3 mt-5">
+            <div class="col graph_armoire ">
+                {{ render_chart(chart_temp) }}
+            </div>
+            <div class="col graph_armoire ">
+                {{ render_chart(chart_co2) }}
+            </div>
+        </div>
+        <div class="row mb-3 mt-5">
+            <div class="col graph_armoire ">
+                {{ render_chart(chart_cov) }}
+            </div>
+            <div class="col graph_armoire ">
+                {{ render_chart(chart_hum) }}
+            </div>
+        </div>
+
+        <div class="row mb-3 mt-5">
+            <div class="col graph_armoire ">
+                {{ render_chart(chart_lux) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

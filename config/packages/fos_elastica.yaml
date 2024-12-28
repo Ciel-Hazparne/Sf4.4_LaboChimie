@@ -1,0 +1,27 @@
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            types:
+                produits:
+                    properties:
+                        formule: ~
+                        name: ~
+                    persistence:
+                        driver: orm
+                        model: App\Entity\ProduitChimique
+
+            settings:
+                index:
+                    analysis:
+                        analyzer:
+                            autocomplete_analyzer:
+                                type: custom
+                                tokenizer: autocomplete_tokenizer
+                                filter: [ lowercase, asciifolding ]
+                        tokenizer:
+                            autocomplete_tokenizer:
+                                type: nGram
+                                min_gram: 3
+                                max_gram: 20

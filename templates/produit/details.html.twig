@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit {{ produit.name }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table class="table table-hover mt-5">
+            <tr class="table-active">
+                <th scope="row">Formule</th>
+                <td>{{ produit.formule }}</td>
+
+            </tr>
+            <tr>
+                <th scope="row">Masse molaire</th>
+                <td>{{ produit.masseMolaire }}</td>
+
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Masse</th>
+                <td>{{ produit.masse }}</td>
+
+            </tr>
+            <tr>
+                <th scope="row">volume</th>
+                <td>{{ produit.volume }}</td>
+
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Concentration Massique</th>
+                <td>{{ produit.concentrationMassique }}</td>
+
+            </tr>
+            <tr>
+                <th scope="row">concentration molaire</th>
+                <td>{{ produit.concentrationMolaire }}</td>
+
+            </tr>
+            <tr class="table-active">
+                <th scope="row">dur&eacute;e de conservation</th>
+                <td>{{ produit.dureeConservation }}</td>
+            </tr>
+            <tr>
+                <th scope="row">date de commande</th>
+                <td>{{ produit.dateCommande|date("m-d-Y") }}</td>
+
+            </tr>
+            <tr class="table-active">
+                <th scope="row">Quantit&eacute;</th>
+                <td>{{ produit.quantite }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Fournisseur</th>
+                <td>{{ produit.fournisseur }}</td>
+
+            </tr>
+        </table>
+        <a href="{{ path('show_produits') }}">
+            <button type="button" class="btn btn-light">Retour &agrave; la liste</button>
+        </a>
+    </div>
+{% endblock %}

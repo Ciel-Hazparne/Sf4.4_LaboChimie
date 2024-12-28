@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SearchController!{% endblock %}
+
+{% block body %}
+    <div class="row m-5">
+        {% for result in results %}
+            {% set hit = result.result.hit %}
+            {% set produit = result.transformed %}
+            <div class="col-md-3">
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header">{{ produit.name }}</div>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-outline-primary">Qte:{{ produit.quantite }} </button>
+                        <a href="{{ path('show_details',{'slug':produit.slug}) }}">
+                            <button type="button" class="btn btn-outline-info ml-3">Details</button>
+                        </a>
+                        {% if app.user and is_granted("ROLE_ADMIN") %}
+                            <div class="btn-group " role="group" aria-label="Button group with nested dropdown">
+                                <button type="button" class="btn btn-outline-primary ml-3">Plus</button>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
+                                        <a class="dropdown-item"
+                                           href="{{ path('edit_produit',{'slug':produit.slug}) }}"><i
+                                                    class="bi bi-pencil-fill"></i>Modifier</a>
+                                        <a class="dropdown-item" href="{{ path('delete_produit',{'id':produit.id}) }}"
+                                           onclick="return confirm('etes vous sur de vouloir supprimer ce produit')"><i
+                                                    class="bi bi-trash" style="color: #AA3333"></i>Supprmier</a>
+                                        <a class="dropdown-item" href="{{ path('panier') }}">Ajouter au panier</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-md-12">
+        {% if results is empty %}
+            <p class="h3">{{ 'no_results'|trans }}</p>
+        {% endif %}
+    </div>
+{% endblock %}
